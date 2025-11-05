@@ -193,7 +193,7 @@
                     <span class="link" onclick="showDetail('additional')">Additional Spots</span>
                 </div>
                 <div class="content">
-                    <p>- 雨天決行</p>
+                    <p>- 雨天延期</p>
                     <p>- 秋限定の贅沢日帰りドライブ</p>
                     <p><br></p>
                     <p>"富士山麓で織りなす、秋色と温もりの一日旅"</p>
@@ -301,9 +301,23 @@
             overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:10000;opacity:0;transition:opacity 0.3s';
             
             var img = document.createElement('img');
-            img.src = 'https://github.com/Rhizobium-gits/Koyo251115/blob/main/figure/IMG_6426.jpeg';
+            img.src = 'https://raw.githubusercontent.com/Rhizobium-gits/Koyo251115/main/figure/IMG_6426.jpeg';
             img.style.cssText = 'max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.5)';
-            img.onerror = function() { overlay.remove(); };
+            
+            // 画像読み込み成功時
+            img.onload = function() {
+                console.log('画像が正常に読み込まれました');
+            };
+            
+            // 画像読み込み失敗時 - 大きな🍁を表示
+            img.onerror = function() {
+                console.error('画像の読み込みに失敗しました。URLを確認してください: ' + img.src);
+                img.remove();
+                var fallback = document.createElement('div');
+                fallback.style.cssText = 'font-size:200px;';
+                fallback.textContent = '🍁';
+                overlay.appendChild(fallback);
+            };
             
             overlay.appendChild(img);
             document.body.appendChild(overlay);
