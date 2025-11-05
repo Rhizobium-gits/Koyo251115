@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富士山麓紅葉コース</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Yu Mincho', 'YuMincho', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'MS Mincho', serif;
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.9;
+            padding: 60px 30px;
+            font-size: 13px;
+        }
+        
+        #intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #leaves-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 80px;
+        }
+        
+        .nav {
+            min-width: 200px;
+            position: sticky;
+            top: 60px;
+            align-self: flex-start;
+        }
+        
+        .nav-mobile {
+            display: none;
+        }
+        
+        .nav-desktop {
+            display: block;
+        }
+        
+        .main-content {
+            flex: 1;
+            max-width: 600px;
+        }
+        
+        .home-button {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            font-size: 22px;
+            cursor: pointer;
+            text-decoration: none;
+            background: none;
+            border: none;
+            padding: 0;
+            display: none;
+            transition: opacity 0.2s;
+        }
+        
+        .home-button:hover {
+            opacity: 0.6;
+        }
+        
+        .leaf-icon {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            font-size: 28px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            transition: opacity 0.2s;
+            z-index: 100;
+        }
+        
+        .leaf-icon:hover {
+            opacity: 0.7;
+            transform: scale(1.1);
+        }
+        
+        .leaf-icon.hidden {
+            display: none;
+        }
+        
+        h1 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+        
+        .content {
+            font-size: 13px;
+            line-height: 1.9;
+            color: #000000;
+        }
+        
+        .content p {
+            margin-bottom: 0;
+        }
+        
+        .link {
+            color: #000000;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 13px;
+            display: block;
+            margin-bottom: 2px;
+            transition: opacity 0.2s;
+        }
+        
+        .link:hover {
+            opacity: 0.6;
+        }
+        
+        .detail {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 50px 20px;
+                font-size: 12px;
+            }
+            
+            .container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-desktop {
+                display: none;
+            }
+            
+            .nav-mobile {
+                display: block;
+                position: static;
+                margin-top: 10px;
+                margin-bottom: 20px;
+            }
+            
+            #home {
+                margin-bottom: 0;
+            }
+            
+            h1 {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+            
+            .content {
+                font-size: 12px;
+            }
+            
+            .home-button {
+                top: 20px;
+                left: 20px;
+                font-size: 20px;
+            }
+            
+            .leaf-icon {
+                top: 20px;
+                left: 20px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="intro">
+        <div id="leaves-container"></div>
+    </div>
+    
+    <button class="home-button" onclick="showHome()">🍁</button>
+    <button class="leaf-icon" id="leafIcon" onclick="triggerLeafFall()">🍁</button>
+    
+    <div class="container">
+        <div class="nav nav-desktop" id="navigation-desktop">
+            <span class="link" onclick="showDetail('destinations')">Destinations</span>
+            <span class="link" onclick="showDetail('schedule')">Schedule</span>
+            <span class="link" onclick="showDetail('price')">Cost</span>
+            <span class="link" onclick="showDetail('additional')">Additional Spots</span>
+        </div>
+        
+        <div class="main-content">
+            <div id="home">
+                <h1>富士山麓紅葉コース</h1>
+                <div class="nav nav-mobile" id="navigation-mobile">
+                    <span class="link" onclick="showDetail('destinations')">Destinations</span>
+                    <span class="link" onclick="showDetail('schedule')">Schedule</span>
+                    <span class="link" onclick="showDetail('price')">Cost</span>
+                    <span class="link" onclick="showDetail('additional')">Additional Spots</span>
+                </div>
+                <div class="content">
+                    <p>- 雨天延期</p>
+                    <p>- other:秋限定の贅沢日帰りドライブ</p>
+                    <p><br></p>
+                    <p>"富士山麓で織りなす、秋色と温もりの一日旅"</p>
+                    <p>富士山を望む2つの湖で、日本の美しい紅葉を心ゆくまで堪能し</p>
+                    <p>温泉で心と体を癒す</p>
+                </div>
+            </div>
+            
+            <div id="destinations" class="detail">
+                <h1>Destinations</h1>
+                <div class="content">
+                    <p><br></p>
+                    <p>河口湖 もみじ回廊</p>
+                    <p>- 富士河口湖紅葉まつり(屋台あり)</p>
+                    <p>山梨県南都留郡富士河口湖町河口２３０７</p>
+                    <p><br></p>
+                    <p>富士眺望の湯 ゆらり</p>
+                    <p>山梨県南都留郡鳴沢村８５３２−５</p>
+                </div>
+            </div>
+            
+            <div id="schedule" class="detail">
+                <h1>Schedule</h1>
+                <div class="content">
+                    <p><br></p>
+                    <p>【8:00】日本レンタカー湘南台営業所</p>
+                    <p>湘南台1丁目 - SUBARU/インプレッサ</p>
+                    <p>レンタカー受取・出発準備</p>
+                    <p>ナビ設定・ドライブ開始</p>
+                    <p><br></p>
+                    <p>【8:30】湘南台出発</p>
+                    <p>東名高速→中央自動車道経由</p>
+                    <p>途中：海老名SA/談合坂SAで休憩</p>
+                    <p><br></p>
+                    <p>【10:30】河口湖到着</p>
+                    <p><br></p>
+                    <p>【10:30-12:00】富士河口湖紅葉まつり会場</p>
+                    <p>紅葉鑑賞・撮影タイム</p>
+                    <p>屋台グルメ</p>
+                    <p><br></p>
+                    <p>【12:00-13:00】もみじ回廊</p>
+                    <p>河口湖北岸の絶景もみじトンネル</p>
+                    <p>インスタ映え写真撮影</p>
+                    <p><br></p>
+                    <p>【13:00-14:00】ランチタイム</p>
+                    <p>河口湖畔のレストランでほうとう等</p>
+                    <p>ほうとう蔵 歩成 河口湖店</p>
+                    <p><br></p>
+                    <p>【14:00-16:00】富士眺望の湯 ゆらり</p>
+                    <p>温泉でリラックス（富士山眺望！）</p>
+                    <p>湯上りカフェ・休憩</p>
+                    <p><br></p>
+                    <p>【16:00-17:30】河口湖周辺でゆっくり</p>
+                    <p>コーヒーブレイク</p>
+                    <p><br></p>
+                    <p>【17:30】河口湖出発</p>
+                    <p><br></p>
+                    <p>【19:30】湘南台駅到着・解散or時間があれば追加で大山へ</p>
+                    <p>レンタカー返却(翌日朝8:30まで)</p>
+                </div>
+            </div>
+            
+            <div id="price" class="detail">
+                <h1>Cost</h1>
+                <div class="content">
+                    <p><br></p>
+                    <p>レンタカー</p>
+                    <p>総走行距離230km</p>
+                    <p>24時間レンタル(めちゃくちゃ混んだことを想定して)</p>
+                    <p>11,110円　9人で1,235円</p>
+                    <p><br></p>
+                    <p>ガソリンと高速料金</p>
+                    <p>高速料金：3,354円 ×2</p>
+                    <p>ガソリン代：2,200円 ×2</p>
+                    <p>5,554円　9人で617円</p>
+                    <p><br></p>
+                    <p>風呂</p>
+                    <p>1,700円　タオル付き</p>
+                    <p><br></p>
+                    <p>お昼ご飯</p>
+                    <p>1,650円　黄金ほうとう</p>
+                    <p><br></p>
+                    <p>合計 5,820円</p>
+                    <p><br></p>
+                    <p>※ 雨天の場合は延期となります</p>
+                    <p>※ 時間は目安です。道路状況により変更になる場合があります</p>
+                    <p>※ 料金は2025年時点の参考価格です</p>
+                </div>
+            </div>
+            
+            <div id="additional" class="detail">
+                <h1>Additional Spots</h1>
+                <div class="content">
+                    <p><br></p>
+                    <p>大山阿夫利神社(伊勢原)</p>
+                    <p>神奈川県の紅葉の名所</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 画像が舞い降りるエフェクト
+        function createImageLeaf() {
+            const leaf = document.createElement('img');
+            leaf.src = 'https://raw.githubusercontent.com/Rhizobium-gits/Koyo251115/main/figure/IMG_6426.jpeg';
+            leaf.style.position = 'fixed';
+            leaf.style.width = Math.random() * 80 + 60 + 'px';
+            leaf.style.left = Math.random() * 100 + '%';
+            leaf.style.top = '-150px';
+            leaf.style.opacity = Math.random() * 0.4 + 0.6;
+            leaf.style.zIndex = '1000';
+            leaf.style.pointerEvents = 'none';
+            leaf.style.borderRadius = '8px';
+            leaf.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+            
+            const duration = Math.random() * 4 + 4;
+            const delay = Math.random() * 0.5;
+            const drift = (Math.random() - 0.5) * 300;
+            const rotation = Math.random() * 720 - 360;
+            
+            const animName = `imageFall-${Date.now()}-${Math.random()}`;
+            leaf.style.animation = `${animName} ${duration}s ease-in ${delay}s forwards`;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ${animName} {
+                    to {
+                        transform: translateY(${window.innerHeight + 200}px) translateX(${drift}px) rotate(${rotation}deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(leaf);
+            
+            setTimeout(() => {
+                leaf.remove();
+                style.remove();
+            }, (duration + delay) * 1000);
+        }
+        
+        // 🍁アイコンをクリックしたときのエフェクト
+        function triggerLeafFall() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => createImageLeaf(), i * 150);
+            }
+        }
+        
+        // 紅葉のアニメーション
+        function createLeaf() {
+            const leaf = document.createElement('div');
+            leaf.textContent = '🍁';
+            leaf.style.position = 'absolute';
+            leaf.style.fontSize = Math.random() * 20 + 20 + 'px';
+            leaf.style.left = Math.random() * 100 + '%';
+            leaf.style.top = '-50px';
+            leaf.style.opacity = Math.random() * 0.5 + 0.5;
+            
+            const duration = Math.random() * 3 + 3;
+            const delay = Math.random() * 2;
+            const drift = (Math.random() - 0.5) * 200;
+            
+            leaf.style.animation = `fall-${Date.now()}-${Math.random()} ${duration}s linear ${delay}s forwards`;
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall-${Date.now()}-${Math.random()} {
+                    to {
+                        transform: translateY(${window.innerHeight + 100}px) translateX(${drift}px) rotate(${Math.random() * 360}deg);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.getElementById('leaves-container').appendChild(leaf);
+            
+            setTimeout(() => {
+                leaf.remove();
+                style.remove();
+            }, (duration + delay) * 1000);
+        }
+        
+        // イントロアニメーション
+        window.addEventListener('load', () => {
+            const intro = document.getElementById('intro');
+            
+            // 紅葉を30個生成
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => createLeaf(), i * 100);
+            }
+            
+            // 4秒後にフェードアウト
+            setTimeout(() => {
+                intro.style.transition = 'opacity 1s';
+                intro.style.opacity = '0';
+                setTimeout(() => {
+                    intro.style.display = 'none';
+                }, 1000);
+            }, 4000);
+        });
+        
+        function showDetail(section) {
+            document.getElementById('home').style.display = 'none';
+            document.querySelectorAll('.detail').forEach(el => el.style.display = 'none');
+            document.getElementById(section).style.display = 'block';
+            document.querySelector('.home-button').style.display = 'block';
+            document.getElementById('leafIcon').classList.add('hidden');
+        }
+        
+        function showHome() {
+            document.getElementById('home').style.display = 'block';
+            document.querySelectorAll('.detail').forEach(el => el.style.display = 'none');
+            document.querySelector('.home-button').style.display = 'none';
+            document.getElementById('leafIcon').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
