@@ -31,6 +31,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
         }
         
         #leaves-container {
@@ -334,9 +335,9 @@
             leaf.style.borderRadius = '8px';
             leaf.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
             
-            const duration = Math.random() * 4 + 4;
+            const duration = Math.random() * 4 + 5;
             const delay = Math.random() * 0.5;
-            const drift = (Math.random() - 0.5) * 300;
+            const drift = (Math.random() - 0.5) * 400;
             const rotation = Math.random() * 720 - 360;
             
             const animName = `imageFall-${Date.now()}-${Math.random()}`;
@@ -345,7 +346,11 @@
             const style = document.createElement('style');
             style.textContent = `
                 @keyframes ${animName} {
-                    to {
+                    0% {
+                        transform: translateY(0) translateX(0) rotate(0deg);
+                        opacity: ${leaf.style.opacity};
+                    }
+                    100% {
                         transform: translateY(${window.innerHeight + 200}px) translateX(${drift}px) rotate(${rotation}deg);
                         opacity: 0;
                     }
@@ -375,20 +380,25 @@
             leaf.style.position = 'absolute';
             leaf.style.fontSize = Math.random() * 20 + 20 + 'px';
             leaf.style.left = Math.random() * 100 + '%';
-            leaf.style.top = '-50px';
+            leaf.style.top = '-80px';
             leaf.style.opacity = Math.random() * 0.5 + 0.5;
             
-            const duration = Math.random() * 3 + 3;
-            const delay = Math.random() * 2;
-            const drift = (Math.random() - 0.5) * 200;
+            const duration = Math.random() * 4 + 5;
+            const delay = Math.random() * 1.5;
+            const drift = (Math.random() - 0.5) * 300;
+            const rotation = Math.random() * 720 - 360;
             
-            leaf.style.animation = `fall-${Date.now()}-${Math.random()} ${duration}s linear ${delay}s forwards`;
+            const animName = `fall-${Date.now()}-${Math.random()}`;
+            leaf.style.animation = `${animName} ${duration}s ease-in ${delay}s forwards`;
             
             const style = document.createElement('style');
             style.textContent = `
-                @keyframes fall-${Date.now()}-${Math.random()} {
-                    to {
-                        transform: translateY(${window.innerHeight + 100}px) translateX(${drift}px) rotate(${Math.random() * 360}deg);
+                @keyframes ${animName} {
+                    0% {
+                        transform: translateY(0) translateX(0) rotate(0deg);
+                    }
+                    100% {
+                        transform: translateY(${window.innerHeight + 150}px) translateX(${drift}px) rotate(${rotation}deg);
                     }
                 }
             `;
@@ -411,14 +421,14 @@
                 setTimeout(() => createLeaf(), i * 100);
             }
             
-            // 4秒後にフェードアウト
+            // 7秒後にフェードアウト（絵文字が完全に落ちきるまで待つ）
             setTimeout(() => {
                 intro.style.transition = 'opacity 1s';
                 intro.style.opacity = '0';
                 setTimeout(() => {
                     intro.style.display = 'none';
                 }, 1000);
-            }, 4000);
+            }, 7000);
         });
         
         function showDetail(section) {
