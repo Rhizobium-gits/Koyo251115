@@ -173,10 +173,10 @@
 </head>
 <body>
     <button class="home-button" onclick="showHome()">🍁</button>
-    <button class="leaf-icon" id="leafIcon" onclick="triggerLeafFall()">🍁</button>
+    <button class="leaf-icon" id="leafIcon" onclick="showImage()">🍁</button>
     
     <div class="container">
-        <div class="nav nav-desktop" id="navigation-desktop">
+        <div class="nav nav-desktop">
             <span class="link" onclick="showDetail('destinations')">Destinations</span>
             <span class="link" onclick="showDetail('schedule')">Schedule</span>
             <span class="link" onclick="showDetail('price')">Cost</span>
@@ -186,7 +186,7 @@
         <div class="main-content">
             <div id="home">
                 <h1>富士山麓紅葉コース</h1>
-                <div class="nav nav-mobile" id="navigation-mobile">
+                <div class="nav nav-mobile">
                     <span class="link" onclick="showDetail('destinations')">Destinations</span>
                     <span class="link" onclick="showDetail('schedule')">Schedule</span>
                     <span class="link" onclick="showDetail('price')">Cost</span>
@@ -296,60 +296,31 @@
     </div>
     
     <script>
-        // 画像を1秒間表示するエフェクト
-        function createImageLeaf() {
-            const overlay = document.createElement('div');
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100%';
-            overlay.style.height = '100%';
-            overlay.style.backgroundColor = 'rgba(0,0,0,0.8)';
-            overlay.style.display = 'flex';
-            overlay.style.alignItems = 'center';
-            overlay.style.justifyContent = 'center';
-            overlay.style.zIndex = '10000';
-            overlay.style.opacity = '0';
-            overlay.style.transition = 'opacity 0.3s';
+        function showImage() {
+            var overlay = document.createElement('div');
+            overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:10000;opacity:0;transition:opacity 0.3s';
             
-            const img = document.createElement('img');
+            var img = document.createElement('img');
             img.src = 'https://raw.githubusercontent.com/Rhizobium-gits/Koyo251115/main/figure/IMG_6426.jpeg';
-            img.style.maxWidth = '90%';
-            img.style.maxHeight = '90%';
-            img.style.borderRadius = '12px';
-            img.style.boxShadow = '0 8px 32px rgba(0,0,0,0.5)';
-            
-            img.onerror = function() {
-                console.error('画像の読み込みに失敗しました');
-                overlay.remove();
-            };
+            img.style.cssText = 'max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.5)';
+            img.onerror = function() { overlay.remove(); };
             
             overlay.appendChild(img);
             document.body.appendChild(overlay);
             
-            // フェードイン
-            setTimeout(() => {
-                overlay.style.opacity = '1';
-            }, 10);
-            
-            // 1秒後にフェードアウトして削除
-            setTimeout(() => {
+            setTimeout(function() { overlay.style.opacity = '1'; }, 10);
+            setTimeout(function() {
                 overlay.style.opacity = '0';
-                setTimeout(() => {
-                    overlay.remove();
-                }, 300);
+                setTimeout(function() { overlay.remove(); }, 300);
             }, 1000);
-        }
-        
-        // 🍁アイコンをクリックしたときのエフェクト
-        function triggerLeafFall() {
-            console.log('🍁アイコンがクリックされました');
-            createImageLeaf();
         }
         
         function showDetail(section) {
             document.getElementById('home').style.display = 'none';
-            document.querySelectorAll('.detail').forEach(el => el.style.display = 'none');
+            var details = document.querySelectorAll('.detail');
+            for (var i = 0; i < details.length; i++) {
+                details[i].style.display = 'none';
+            }
             document.getElementById(section).style.display = 'block';
             document.querySelector('.home-button').style.display = 'block';
             document.getElementById('leafIcon').classList.add('hidden');
@@ -357,7 +328,10 @@
         
         function showHome() {
             document.getElementById('home').style.display = 'block';
-            document.querySelectorAll('.detail').forEach(el => el.style.display = 'none');
+            var details = document.querySelectorAll('.detail');
+            for (var i = 0; i < details.length; i++) {
+                details[i].style.display = 'none';
+            }
             document.querySelector('.home-button').style.display = 'none';
             document.getElementById('leafIcon').classList.remove('hidden');
         }
