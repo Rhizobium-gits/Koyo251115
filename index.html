@@ -121,6 +121,371 @@
         .detail {
             display: none;
         }
+
+        /* ルーレット用のスタイル */
+        .roulette-container {
+            max-width: 100%;
+        }
+
+        .roulette-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .roulette-header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .roulette-description {
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* ステップインジケーター */
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .step-item.active {
+            color: #9333ea;
+        }
+
+        .step-item.inactive {
+            color: #9ca3af;
+        }
+
+        .step-item.active .step-number {
+            background: #9333ea;
+            color: white;
+        }
+
+        .step-item.inactive .step-number {
+            background: #d1d5db;
+            color: white;
+        }
+
+        .step-divider {
+            width: 48px;
+            height: 4px;
+            background: #d1d5db;
+        }
+
+        /* メンバー選択 */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .member-button {
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .member-button.selected {
+            background: linear-gradient(to right, #3b82f6, #1d4ed8);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .member-button.unselected {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .member-button.unselected:hover {
+            background: #e5e7eb;
+        }
+
+        /* グループ設定 */
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            color: #1e40af;
+            margin-bottom: 4px;
+        }
+
+        .info-box .highlight {
+            font-weight: bold;
+        }
+
+        .info-box .success {
+            color: #16a34a;
+        }
+
+        .info-box .error {
+            color: #dc2626;
+        }
+
+        .group-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .group-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .group-label {
+            font-weight: 600;
+            color: #374151;
+            min-width: 96px;
+        }
+
+        .group-input {
+            width: 80px;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .group-input:focus {
+            outline: none;
+            border-color: #9333ea;
+            box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
+        }
+
+        .delete-button {
+            margin-left: auto;
+            padding: 8px;
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .delete-button:hover {
+            background: #fee2e2;
+        }
+
+        .add-group-button {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #d1d5db;
+            background: none;
+            color: #6b7280;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+            margin-top: 16px;
+        }
+
+        .add-group-button:hover {
+            border-color: #a855f7;
+            color: #9333ea;
+        }
+
+        /* ボタン */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .button {
+            font-weight: bold;
+            padding: 12px 40px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .button:hover:not(:disabled) {
+            transform: scale(1.05);
+        }
+
+        .button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .button-primary {
+            background: linear-gradient(to right, #a855f7, #ec4899);
+            color: white;
+        }
+
+        .button-primary:hover:not(:disabled) {
+            background: linear-gradient(to right, #9333ea, #db2777);
+        }
+
+        .button-secondary {
+            background: #d1d5db;
+            color: #1f2937;
+        }
+
+        .button-secondary:hover {
+            background: #9ca3af;
+        }
+
+        .button-success {
+            background: linear-gradient(to right, #10b981, #059669);
+            color: white;
+        }
+
+        .button-success:hover:not(:disabled) {
+            background: linear-gradient(to right, #059669, #047857);
+        }
+
+        /* 結果表示 */
+        .result-section {
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .group-box {
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .group-box h2 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .group-members-result {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .group-member-card {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .group-member-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* カラーバリエーション */
+        .color-orange { background: linear-gradient(to bottom right, #fed7aa, #fdba74); }
+        .color-orange h2 { color: #9a3412; }
+        .color-orange .group-member-card { color: #c2410c; }
+
+        .color-teal { background: linear-gradient(to bottom right, #99f6e4, #5eead4); }
+        .color-teal h2 { color: #115e59; }
+        .color-teal .group-member-card { color: #0f766e; }
+
+        .color-purple { background: linear-gradient(to bottom right, #e9d5ff, #d8b4fe); }
+        .color-purple h2 { color: #6b21a8; }
+        .color-purple .group-member-card { color: #7e22ce; }
+
+        .color-pink { background: linear-gradient(to bottom right, #fce7f3, #fbcfe8); }
+        .color-pink h2 { color: #9f1239; }
+        .color-pink .group-member-card { color: #be123c; }
+
+        .color-blue { background: linear-gradient(to bottom right, #dbeafe, #bfdbfe); }
+        .color-blue h2 { color: #1e3a8a; }
+        .color-blue .group-member-card { color: #1e40af; }
+
+        .color-green { background: linear-gradient(to bottom right, #d1fae5, #a7f3d0); }
+        .color-green h2 { color: #065f46; }
+        .color-green .group-member-card { color: #047857; }
+
+        .color-indigo { background: linear-gradient(to bottom right, #e0e7ff, #c7d2fe); }
+        .color-indigo h2 { color: #3730a3; }
+        .color-indigo .group-member-card { color: #4338ca; }
+
+        .color-red { background: linear-gradient(to bottom right, #fee2e2, #fecaca); }
+        .color-red h2 { color: #991b1b; }
+        .color-red .group-member-card { color: #b91c1c; }
+
+        .spinning-icon {
+            display: inline-block;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
         
         @media (max-width: 768px) {
             body {
@@ -168,6 +533,32 @@
                 left: 20px;
                 font-size: 24px;
             }
+
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-indicator {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            .step-divider {
+                width: 24px;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .group-members-result {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -181,6 +572,7 @@
             <span class="link" onclick="showDetail('schedule')">Schedule</span>
             <span class="link" onclick="showDetail('price')">Cost</span>
             <span class="link" onclick="showDetail('additional')">Additional Spots</span>
+            <span class="link" onclick="showDetail('roulette')">ルーレット</span>
         </div>
         
         <div class="main-content">
@@ -191,6 +583,7 @@
                     <span class="link" onclick="showDetail('schedule')">Schedule</span>
                     <span class="link" onclick="showDetail('price')">Cost</span>
                     <span class="link" onclick="showDetail('additional')">Additional Spots</span>
+                    <span class="link" onclick="showDetail('roulette')">ルーレット</span>
                 </div>
                 <div class="content">
                     <p>- 雨天延期</p>
@@ -243,7 +636,7 @@
                     <p>ほうとう蔵 歩成 河口湖店</p>
                     <p><br></p>
                     <p>【14:00-16:00】富士眺望の湯 ゆらり</p>
-                    <p>温泉でリラックス（富士山眺望！）</p>
+                    <p>温泉でリラックス(富士山眺望！)</p>
                     <p>湯上りカフェ・休憩</p>
                     <p><br></p>
                     <p>【16:00-17:30】河口湖周辺でゆっくり</p>
@@ -293,10 +686,334 @@
                     <p><link>https://www.instagram.com/reel/DPlP8SpD5J3/?igsh=enc5ZDl1cjg4bXlx</link></p>
                 </div>
             </div>
+
+            <div id="roulette" class="detail">
+                <div class="roulette-container">
+                    <div class="roulette-header">
+                        <h1>
+                            ✨ カスタムグループ分けルーレット ✨
+                        </h1>
+                        <p class="roulette-description">メンバーとグループを自由に設定できます</p>
+                    </div>
+
+                    <!-- ステップインジケーター -->
+                    <div class="step-indicator" id="stepIndicator">
+                        <div class="step-item active">
+                            <div class="step-number">1</div>
+                            <span>メンバー選択</span>
+                        </div>
+                        <div class="step-divider"></div>
+                        <div class="step-item inactive">
+                            <div class="step-number">2</div>
+                            <span>グループ設定</span>
+                        </div>
+                        <div class="step-divider"></div>
+                        <div class="step-item inactive">
+                            <div class="step-number">3</div>
+                            <span>結果</span>
+                        </div>
+                    </div>
+
+                    <!-- ステップ1: メンバー選択 -->
+                    <div id="step1">
+                        <h2 style="font-size: 16px; margin-bottom: 16px;">👥 メンバーを選択 (<span id="selectedCount">0</span>人選択中)</h2>
+                        <div class="members-grid" id="membersGrid"></div>
+                        <div class="button-container">
+                            <button class="button button-primary" id="nextButton" onclick="goToStep2()" disabled>
+                                次へ：グループ設定
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ステップ2: グループ設定 -->
+                    <div id="step2" style="display: none;">
+                        <h2 style="font-size: 16px; margin-bottom: 16px;">⚙️ グループ設定</h2>
+                        <div class="info-box">
+                            <p>選択したメンバー: <span class="highlight" id="totalMembers">0</span>人</p>
+                            <p>グループの合計人数: <span class="highlight" id="totalGroupSize">0</span>人
+                                <span id="validationWarning" style="display: none; margin-left: 8px; color: #dc2626;">
+                                    ⚠️ 合計人数が一致しません
+                                </span>
+                            </p>
+                        </div>
+                        <div class="group-list" id="groupList"></div>
+                        <button class="add-group-button" onclick="addGroup()">
+                            ➕ グループを追加
+                        </button>
+                        <div class="button-container">
+                            <button class="button button-secondary" onclick="goBackToStep1()">
+                                戻る
+                            </button>
+                            <button class="button button-success" id="startButton" onclick="spinRoulette()" disabled>
+                                <span id="shuffleIcon">🔀</span>
+                                <span id="startButtonText">ルーレットスタート!</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- ステップ3: 結果表示 -->
+                    <div id="step3" style="display: none;">
+                        <div class="result-section" id="resultContainer"></div>
+                        <div class="button-container">
+                            <button class="button button-primary" onclick="reset()">
+                                最初からやり直す
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
     <script>
+        // ルーレット用の変数
+        const allMembers = ['美雨', '翼', '絹谷', '光陽', '光雅', '照井', '直樹', '偉颯', 'ハム'];
+        let selectedMembers = [];
+        let groups = [{ size: 3 }, { size: 3 }];
+        let currentStep = 1;
+        let isSpinning = false;
+
+        const colors = [
+            'color-orange', 'color-teal', 'color-purple', 'color-pink',
+            'color-blue', 'color-green', 'color-indigo', 'color-red'
+        ];
+
+        function initializeRoulette() {
+            renderMembers();
+            updateStepIndicator();
+        }
+
+        function renderMembers() {
+            const grid = document.getElementById('membersGrid');
+            grid.innerHTML = '';
+            
+            allMembers.forEach(member => {
+                const button = document.createElement('button');
+                button.className = 'member-button ' + (selectedMembers.includes(member) ? 'selected' : 'unselected');
+                button.onclick = () => toggleMember(member);
+                
+                if (selectedMembers.includes(member)) {
+                    button.innerHTML = '✓ ' + member;
+                } else {
+                    button.textContent = member;
+                }
+                
+                grid.appendChild(button);
+            });
+            
+            document.getElementById('selectedCount').textContent = selectedMembers.length;
+            document.getElementById('nextButton').disabled = selectedMembers.length === 0;
+        }
+
+        function toggleMember(member) {
+            if (selectedMembers.includes(member)) {
+                selectedMembers = selectedMembers.filter(m => m !== member);
+            } else {
+                selectedMembers.push(member);
+            }
+            renderMembers();
+        }
+
+        function renderGroups() {
+            const list = document.getElementById('groupList');
+            list.innerHTML = '';
+            
+            groups.forEach((group, index) => {
+                const item = document.createElement('div');
+                item.className = 'group-item';
+                
+                const label = document.createElement('span');
+                label.className = 'group-label';
+                label.textContent = 'グループ ' + (index + 1) + ':';
+                
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.className = 'group-input';
+                input.min = '1';
+                input.value = group.size;
+                input.oninput = (e) => updateGroupSize(index, e.target.value);
+                
+                const peopleText = document.createElement('span');
+                peopleText.textContent = '人';
+                
+                item.appendChild(label);
+                item.appendChild(input);
+                item.appendChild(peopleText);
+                
+                if (groups.length > 1) {
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'delete-button';
+                    deleteBtn.innerHTML = '🗑️';
+                    deleteBtn.onclick = () => removeGroup(index);
+                    item.appendChild(deleteBtn);
+                }
+                
+                list.appendChild(item);
+            });
+            
+            updateValidation();
+        }
+
+        function updateGroupSize(index, value) {
+            groups[index].size = parseInt(value) || 0;
+            updateValidation();
+        }
+
+        function addGroup() {
+            groups.push({ size: 2 });
+            renderGroups();
+        }
+
+        function removeGroup(index) {
+            if (groups.length > 1) {
+                groups.splice(index, 1);
+                renderGroups();
+            }
+        }
+
+        function getTotalGroupSize() {
+            return groups.reduce((sum, group) => sum + group.size, 0);
+        }
+
+        function updateValidation() {
+            const totalMembers = selectedMembers.length;
+            const totalGroupSize = getTotalGroupSize();
+            
+            document.getElementById('totalMembers').textContent = totalMembers;
+            document.getElementById('totalGroupSize').textContent = totalGroupSize;
+            
+            const isValid = totalMembers === totalGroupSize;
+            const warning = document.getElementById('validationWarning');
+            const startButton = document.getElementById('startButton');
+            
+            if (isValid) {
+                warning.style.display = 'none';
+                document.getElementById('totalGroupSize').className = 'highlight success';
+                startButton.disabled = false;
+            } else {
+                warning.style.display = 'inline';
+                document.getElementById('totalGroupSize').className = 'highlight error';
+                startButton.disabled = true;
+            }
+        }
+
+        function updateStepIndicator() {
+            const steps = document.querySelectorAll('.step-item');
+            steps.forEach((step, index) => {
+                if (index + 1 <= currentStep) {
+                    step.className = 'step-item active';
+                } else {
+                    step.className = 'step-item inactive';
+                }
+            });
+        }
+
+        function goToStep2() {
+            if (selectedMembers.length === 0) return;
+            
+            currentStep = 2;
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            renderGroups();
+            updateStepIndicator();
+        }
+
+        function goBackToStep1() {
+            currentStep = 1;
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step1').style.display = 'block';
+            updateStepIndicator();
+        }
+
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        function spinRoulette() {
+            if (isSpinning || getTotalGroupSize() !== selectedMembers.length) return;
+            
+            isSpinning = true;
+            const startButton = document.getElementById('startButton');
+            const shuffleIcon = document.getElementById('shuffleIcon');
+            const startButtonText = document.getElementById('startButtonText');
+            
+            startButton.disabled = true;
+            startButtonText.textContent = 'ルーレット中...';
+            shuffleIcon.className = 'spinning-icon';
+            
+            setTimeout(() => {
+                const shuffled = shuffleArray([...selectedMembers]);
+                const result = [];
+                let currentIndex = 0;
+                
+                groups.forEach((group, i) => {
+                    const groupMembers = shuffled.slice(currentIndex, currentIndex + group.size);
+                    result.push({
+                        groupNumber: i + 1,
+                        size: group.size,
+                        members: groupMembers
+                    });
+                    currentIndex += group.size;
+                });
+                
+                showResult(result);
+                
+                isSpinning = false;
+                startButton.disabled = false;
+                startButtonText.textContent = 'ルーレットスタート!';
+                shuffleIcon.className = '';
+                
+                currentStep = 3;
+                document.getElementById('step2').style.display = 'none';
+                document.getElementById('step3').style.display = 'block';
+                updateStepIndicator();
+            }, 1500);
+        }
+
+        function showResult(result) {
+            const container = document.getElementById('resultContainer');
+            container.innerHTML = '';
+            
+            result.forEach((group, index) => {
+                const box = document.createElement('div');
+                box.className = 'group-box ' + colors[index % colors.length];
+                
+                const header = document.createElement('h2');
+                header.innerHTML = '👥 グループ ' + group.groupNumber + ' (' + group.size + '人)';
+                
+                const membersDiv = document.createElement('div');
+                membersDiv.className = 'group-members-result';
+                
+                group.members.forEach(member => {
+                    const card = document.createElement('div');
+                    card.className = 'group-member-card';
+                    card.textContent = member;
+                    membersDiv.appendChild(card);
+                });
+                
+                box.appendChild(header);
+                box.appendChild(membersDiv);
+                container.appendChild(box);
+            });
+        }
+
+        function reset() {
+            selectedMembers = [];
+            groups = [{ size: 3 }, { size: 3 }];
+            currentStep = 1;
+            
+            document.getElementById('step3').style.display = 'none';
+            document.getElementById('step1').style.display = 'block';
+            
+            renderMembers();
+            updateStepIndicator();
+        }
+
         function showImage() {
             var overlay = document.createElement('div');
             overlay.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:10000;opacity:0;transition:opacity 0.3s;cursor:pointer';
@@ -305,12 +1022,10 @@
             container.style.cssText = 'max-width:90%;max-height:90%;display:flex;align-items:center;justify-content:center';
             
             var img = document.createElement('img');
-            // GitHubの画像をraw形式で取得
             img.src = 'https://raw.githubusercontent.com/Rhizobium-gits/Koyo251115/main/figure/IMG_6426.jpeg';
             img.style.cssText = 'max-width:100%;max-height:90vh;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.5)';
             
             img.onerror = function() {
-                // 画像が読み込めない場合はメッセージを表示
                 container.innerHTML = '<div style="color:white;font-size:20px;text-align:center;padding:40px;background:rgba(255,255,255,0.1);border-radius:12px;">画像を読み込めませんでした<br><br>🍁</div>';
             };
             
@@ -318,16 +1033,13 @@
             overlay.appendChild(container);
             document.body.appendChild(overlay);
             
-            // クリックで閉じる
             overlay.onclick = function() {
                 overlay.style.opacity = '0';
                 setTimeout(function() { overlay.remove(); }, 300);
             };
             
-            // フェードイン
             setTimeout(function() { overlay.style.opacity = '1'; }, 10);
             
-            // 2秒後に自動で閉じる
             setTimeout(function() {
                 overlay.style.opacity = '0';
                 setTimeout(function() { overlay.remove(); }, 300);
@@ -343,6 +1055,10 @@
             document.getElementById(section).style.display = 'block';
             document.querySelector('.home-button').style.display = 'block';
             document.getElementById('leafIcon').classList.add('hidden');
+
+            if (section === 'roulette') {
+                initializeRoulette();
+            }
         }
         
         function showHome() {
